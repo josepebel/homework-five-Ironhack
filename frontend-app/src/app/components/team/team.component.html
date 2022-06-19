@@ -1,0 +1,151 @@
+<div  class="container">
+  <div class="row">
+    <div class="image-container d-flex align-items-center card col-12 col-sm-12 col-md-12 col-lg-3">
+      <h4 class="card-title text-center m-1 badge bg-dark p-1">Trainer selected</h4>
+      <div class="trainer-image mb-5" [ngStyle]="{'background-image': 'url('+pictureSelected+')'}"></div>
+      <div>
+
+        <label>Select a trainer</label>
+        <select (change)="selectTrainer()" class="form-select" [(ngModel)]="trainerInput">
+          <option *ngFor="let trainer of trainerList; let i = index" [value]="trainer.name">{{trainer.name}}</option>
+        </select>
+        </div>
+
+    </div>
+
+      <div class="image-container card col-12 col-sm-12 col-md-12 col-lg-6 ">
+        <h4 *ngIf="trainerInput !== ''" class="card-title text-center m-1 badge bg-dark p-1">{{trainerInput}}'s Team</h4>
+        <h4 *ngIf="trainerInput === ''" class="card-title text-center m-1 badge bg-dark p-1">Team</h4>
+        <div class="row">
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 team-component" *ngFor="let pokemon of teamPokemon; let i = index">
+              <!-- <div class="card d-flex image-team-card" [ngClass]="{ 'first-zero': stateZeroOne == true, 'first-one': stateZeroOne == false }" (mouseover)="changeColorOne()" (mouseout)="changeColorOne()"> -->
+                <div class="card d-flex image-team-card">
+              <small *ngIf="pokemon.name !== '-'" (click)="deletePokemon(pokemon.id, i)" class="close-button ms-auto"><b>X</b></small>
+              <small *ngIf="pokemon.name === '-'" (click)="deletePokemon(pokemon.id, i)" class="close-button ms-auto transparent"><b>X</b></small>
+             <img  [ngClass]="{'resize':pokemon.name === '-'}" class="image-team resize" [src]="pokemon.imageUrl">
+             <h6 class="text-center" [ngClass]="{'transparent':pokemon.name === '-'}"><span>{{pokemon.name}}</span></h6>
+             <h6 *ngIf="pokemon.name !== '-' && pokemon.typeList.length === 1" class="text-center"><span>{{pokemon.typeList[0]}}</span></h6>
+             <h6 *ngIf="pokemon.name !== '-' && pokemon.typeList.length !== 1" class="text-center"><span>{{pokemon.typeList[0]}} & {{pokemon.typeList[1]}}</span></h6>
+             <h6 *ngIf="pokemon.name === '-'" class="text-center transparent"><span>-</span></h6>
+              <button *ngIf="pokemon.name !== '-'" [disabled]="pokemon.name === '-'" (click)="openDetails(pokemon.name, i)" class="btn btn-primary m-1">Details</button>
+
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="image-container d-flex align-items-center card col-12 col-sm-12 col-md-12 col-lg-3 ">
+        <h4 class="card-title card-title-details text-center m-1 badge bg-dark p-1">Pokemon details</h4>
+
+        <div *ngIf="!detailsPokemonOpen" class="pokemon-detail d-flex justify-content-center" >
+          <div class="pokeball-detail"></div>
+      </div>
+        <app-card-details class="col-12 col-sm-12 col-md-12 col-lg-12 " *ngIf="detailsPokemonOpen" [pokemon]="detailsPokemon"></app-card-details>
+      </div>
+</div>
+</div>
+<div class="container mt-5">
+<div class="row">
+  <div class="col-12 col-sm-12 col-md-4 col-lg-4 ">
+    <h2 class="text-center title-search">Use the search engine</h2>
+    <input class="form-control" [(ngModel)]="searcherInput" (keyup)="searcher()" (keyup.enter)="addPokemonCheck()">
+    <h2 class="text-center mt-2">Pokemon selected</h2>
+
+
+    <div class="button-div d-flex justify-content-center mt-4 mb-2">
+    <button type="submit" (click)="addPokemonCheck()" class="btn btn-dark ">Add pokemon</button>
+
+  </div>
+  <div *ngIf="alertTrainer" class="alert alert-danger text-center" role="alert">
+    No trainer selected!
+  </div>
+  <div *ngIf="alertPokemon" class="alert alert-danger text-center" role="alert">
+    No pokemon selected, review the introduced name or select in the list!
+  </div>
+  <div *ngIf="teamCompleted" class="alert alert-danger text-center" role="alert">
+    Team Completed!
+  </div>
+  <div *ngIf="pokemonAdded" class="alert alert-success text-center" role="alert">
+    Pokemon added to {{trainerInput}}'s team
+  </div>
+  <div class="pokemon-detail d-flex justify-content-center" *ngIf="!selectedPokemon">
+    <div class="box">
+        <img src="https://m.media-amazon.com/images/I/41iijFSq7VL._AC_SX466_.jpg" alt="Pokemon">
+        <h3>??? ???</h3>
+        <p>
+          <b>Type:</b> ???
+      </p>
+      <p>
+          <b>Height:</b> ???
+      </p>
+      <p>
+        <b>Weight:</b> ???
+    </p>
+      <p>
+          <b>Health:</b> ???
+      </p>
+      <p>
+          <b>Attack:</b> ???
+      </p>
+      <p>
+        <b>Defense:</b> ???
+    </p>
+      <p>
+          <b>Special attack:</b> ???
+      </p>
+      <p>
+        <b>Special defense:</b> ???
+    </p>
+      <p>
+        <b>Speed:</b> ???
+    </p>
+    </div>
+</div>
+<app-card-details class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="selectedPokemon" [pokemon]="selectedPokemon"></app-card-details>
+
+
+  </div>
+
+  <div class="col-12 col-sm-12 col-md-8 col-lg-8 ">
+    <div class="row"></div>
+    <h2 class="text-center mb-4">Catch your pokemon</h2>
+
+    <div class="d-flex justify-content-center">
+      <div *ngIf="pokemonsMatch.length === 0 && searcherInput === ''"  class="spinner-grow text-dark mb-3" role="status">
+      </div>
+      <div *ngIf="pokemonsMatch.length !== 0"  class="spinner-grow text-success mb-3" role="status">
+      </div>
+      <div *ngIf="pokemonsMatch.length === 0 && searcherInput !== ''"  class="spinner-grow text-danger mb-3" role="status">
+      </div>
+  </div>
+  <div  *ngIf="pokemonsMatch.length === 0 && searcherInput !== ''" class="d-flex justify-content-center"><p class="connection alert alert-danger">No pokemon found with this name</p>
+  </div>
+    <div  *ngIf="pokemonsMatch.length === 0" class="d-flex justify-content-center"><p class="connection alert alert-dark">Use the search engine to connect with Pokedex</p>
+  </div>
+
+    <div  *ngIf="pokemonsMatch.length !== 0" class="d-flex justify-content-center"><p class="connection alert alert-success">Success connection with Pokedex</p>
+  </div>
+
+  <div  *ngIf="pokemonsMatch.length === 0" class="d-flex justify-content-center"><img *ngIf="pokemonsMatch.length === 0" src="../../../assets/img/pokédex.png">
+  </div>
+
+    <div class="row">
+      <div (click)="visualizePokemon(pokemon)" class="col-6 col-sm-6 col-md-3 col-lg-3 p-1" *ngFor="let pokemon of pokemonsMatch">
+        <div class="card search-card" >
+        <!-- <img [src]="pokemon.sprites.front_default"> -->
+        <h6 class="text-center m-1 badge badge-primary"><span>{{pokemon}}</span></h6>
+      </div>
+
+    </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+</div>

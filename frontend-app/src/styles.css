@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+/* body {
+  background: url("./assets/img/pokemon-wallpaper.png") no-repeat fixed bottom;
+  background-size: 40%;
+} */
+
+pagination-controls ul.ngx-pagination {
+  padding-left: 0;
+  margin-top: 15px;
+}

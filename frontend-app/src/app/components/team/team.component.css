@@ -1,0 +1,149 @@
+.container{
+  margin-top: 8rem;
+}
+
+
+.trainer-image{
+  margin-top: 2rem;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 16rem;
+  height: 12rem;
+}
+
+
+span{
+  font-size: 1rem;
+}
+
+h6{
+  font-size: 0.75rem;
+}
+
+.search-card{
+  background-color: rgb(34, 117, 145);
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.search-card:hover{
+  color: black;
+  background-color: rgb(186, 192, 59);;
+}
+
+.close-button{
+  margin-left: auto;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+
+.pokemon-detail {
+  display: grid;
+  grid-gap: 16px;
+  padding: 0px;;
+  grid-template-rows: repeat(minmax(23%, 1fr));
+
+ }
+
+ .pokemon-detail .box{
+     width: 400px;
+     height: 100%;
+     box-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+     background-color: white;
+     text-align: center;
+ }
+
+ .pokemon-detail .box img{
+  max-width: 100px;
+  display: block;
+  margin: 0 auto;
+ }
+
+ .image-container{
+    -webkit-box-shadow: inset -1px 3px 8px 5px #000000, 2px 5px 16px 0px #0B325E, -27px -26px 5px 5px rgba(0,0,0,0);
+    box-shadow: inset -1px 3px 8px 5px #000000, 2px 5px 16px 0px #0B325E, -27px -26px 5px 5px rgba(0,0,0,0);
+   height: 36rem;
+
+   align-items: center;
+   align-self: center;
+   align-content: center;
+   justify-content: center;
+
+   background-color: gainsboro;
+ }
+
+ .transparent{
+   color:white;
+ }
+
+
+
+ .image-team{
+   height: 8rem;
+   width: 8rem;
+ }
+
+
+ .image-team-card{
+   display: flex;
+
+   align-items: center;
+   align-self: center;
+   align-content: center;
+   justify-content: center;
+   margin-bottom: 1rem;
+ }
+
+ .card-title{
+   margin-bottom: 12rem;
+   font-size: 1rem;
+ }
+
+ .connection{
+   font-size: 1rem;
+   font-weight: 500;
+ }
+
+ .title-search{
+   margin-bottom: 1.8rem;
+ }
+
+ .image-team-card:hover{
+   background-color: lightyellow;
+ }
+
+
+
+.pokeball-detail{
+  background: url("../../../assets/img/silueta-pokeball.png");
+  margin-top: 2rem;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 16rem;
+  height: 12rem;
+}
+
+.first-zero{
+  color: black;
+  background-color: white;
+}
+
+.first-one{
+  background-color: black;
+  color: lightyellow;
+}
+
+.resize{
+  width: 4rem;
+  height: 4rem;
+  margin-top: 66px;
+  margin-bottom: 46px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+
+
+
+}

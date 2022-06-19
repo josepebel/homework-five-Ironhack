@@ -1,0 +1,32 @@
+.error-msg{
+  text-align: center;
+  font-size: 8rem;
+  color: firebrick;
+  font-weight: 700;
+
+}
+
+.text-msg{
+  margin-top: -3rem;
+  font-size: 3rem;
+  text-align: center;
+  color: firebrick;
+  font-weight: 700;
+}
+
+
+.img-pokeball{
+  height:8rem;
+  width: 8rem;
+}
+
+.img-pokemon{
+  height: 12rem;
+  width: auto;
+  margin-bottom: -2rem;
+}
+
+
+.notfound{
+  margin-top: 8rem;
+}

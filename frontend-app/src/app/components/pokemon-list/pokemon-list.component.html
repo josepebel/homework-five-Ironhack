@@ -1,0 +1,12 @@
+<div class="pokemon-list">
+    
+    <div class="list-wrapper">
+        <div *ngFor="let pokemon of pokemons | paginate: {itemsPerPage: this.itemsPerPage, currentPage: page, totalItems: this.total}">
+            <div class="box" [ngStyle]="pokemon.name === this.selectedPokemon?.name ? {'background-color': 'black', 'color': 'white'} : {}" (click)="selectPokemon.emit(pokemon); this.selectedPokemon = pokemon">
+                <h5>{{pokemon.name}}</h5>
+                <img [src]="pokemon.sprites.front_default" alt="Pokemon">  
+            </div>
+        </div>
+    </div>
+    <pagination-controls [maxSize]=0 (pageChange)="page = $event; pokemons = []; getPokemons()"></pagination-controls>
+</div>

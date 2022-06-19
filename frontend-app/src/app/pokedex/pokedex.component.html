@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="console">
+    <div class="header">
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png"/>
+    </div>
+    <div class="components">
+        <div>
+            <app-pokemon-list (selectPokemon)="onSelectedPokemon($event)"></app-pokemon-list>
+        </div>
+        <div>
+            <div  *ngIf="!selectedPokemon" class="screenOff">
+                <div>Choose a Pokémon!</div>
+            </div>
+            <app-pokemon-detail *ngIf="selectedPokemon" [pokemon]="selectedPokemon"></app-pokemon-detail>
+        </div>
+    </div>
+    </div>
+</div>

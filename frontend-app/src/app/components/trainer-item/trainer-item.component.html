@@ -1,0 +1,11 @@
+
+<div class="card d-flex align-items-center">
+    <small (click)="deleteTrainer()" class="close-button"><b>X</b></small>
+    <div class="card-img"  [ngStyle]="{'background-image': 'url('+ trainer.picture +')'}"></div>
+    <div class="card-body">
+      <p class="card-text">Name: {{trainer.name}}</p>
+      <p class="card-text">Age: {{trainer.age}}</p>
+      <p class="card-text">Hobby: {{trainer.hobby}}</p>
+    </div>
+</div>
+

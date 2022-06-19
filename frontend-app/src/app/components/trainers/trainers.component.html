@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="formulario col-12 col-sm-12 col-md-3 col-lg-3 offset-md-3 offset-lg-3">
+      <form class="needs-validation" (ngSubmit)="onSubmit()" [formGroup]="registerForm" novalidate>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" placeholder="Enter name" formControlName="name" [ngClass]="{'is-valid':nameInput.valid && nameInput.touched ==true, 'is-invalid':nameInput.invalid && (nameInput.touched || nameInput.dirty)==true}">
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please choose a valid name</div>
+        </div>
+
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" class="form-control" placeholder="Enter age" formControlName="age"  [ngClass]="{'is-valid':ageInput.valid && ageInput.touched ==true, 'is-invalid':ageInput.invalid && (ageInput.touched || ageInput.dirty)==true}">
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please choose a valid age</div>
+        </div>
+        <div class="form-group">
+          <label>Hobby</label>
+          <select (change)="selectPicture() "class="form-select" formControlName="hobby">
+            <option invalid value="">Select a hobby</option>
+            <option  *ngFor="let hobby of hobbiesList; let i = index" [value]="hobby">{{hobby}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Photo</label>
+          <input type="text" class="form-control" placeholder="Choose photo or select hobby" formControlName="picture" [readOnly]="hobbySelected" [ngClass]="{'is-valid':(pictureInput.valid && pictureInput.touched) || pictureInput.valid ==true, 'is-invalid':pictureInput.invalid && (pictureInput.touched || pictureInput.dirty)==true}">
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please choose a valid url picture</div>
+        </div>
+        <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid">Create trainer</button>
+      </form>
+    </div>
+    <div class="image-container col-12 col-sm-12 col-md-3 col-lg-3">
+      <div class="trainer-image" [ngStyle]="{'background-image': 'url('+pictureInput.value+')'}"><div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <app-trainer-item class="col-12 col-sm-6 col-md-3 col-lg-3" *ngFor="let trainer of trainerList; let i = index" [trainer]="trainer" (deleteTrainerEvent)="deleteTrainer(trainerList[i].name, i)"></app-trainer-item>
+  </div>
+  <p class="emptyTrainerList text-center" *ngIf="isTrainerListEmpty">There are not trainers in system</p>
+</div>

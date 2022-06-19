@@ -1,0 +1,42 @@
+<div class="pokemon-detail">
+    <div class="box">
+        <div class="header">
+            <h4>
+                <b>Name:</b> {{pokemon.name}}
+            </h4>
+            <h4>
+                <b>#</b> {{pokemon.id}}
+            </h4>
+        </div>
+
+        <div>
+            <img class="img" [src]="pokemon.sprites.front_default" alt="Pokemon">
+        </div>
+
+        <div class="type">
+            <p>
+                <b>Type:</b> {{pokemon.types[0]?.type?.name}} {{pokemon.types[1]?.type?.name}}
+            </p>
+
+            <p>
+                <b>Abilities:</b>
+                <span  *ngFor="let ability of pokemon.abilities"> {{ability.ability.name}}, </span>
+            </p>
+        </div>
+
+        <div class="stats">
+            <p>
+                <b>Weight:</b> {{pokemon.weight}} hg
+            </p>
+            <p>
+                <b>Height:</b> {{pokemon.height}} dm
+            </p>
+            <p>
+                <b>Health:</b> {{pokemon.stats[0]?.base_stat}}
+            </p>
+            <p>
+                <b>Attack:</b> {{pokemon.stats[1]?.base_stat}}
+            </p>
+        </div>
+    </div>
+</div>

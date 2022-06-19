@@ -1,0 +1,27 @@
+.btn{
+  margin-top: 1rem;
+}
+
+.container{
+  margin-top: 5rem
+}
+
+
+.image-container{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.trainer-image{
+  margin-top: 2rem;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 16rem;
+  height: 12rem;
+}
+
+.emptyTrainerList {
+  color: brown;
+  font-size: 1.5rem;
+}
